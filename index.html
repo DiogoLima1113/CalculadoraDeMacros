@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+    <!--Header-->
+    <section id="top-bar">
+        <div>
+            <center>
+                <span id="nome">Bem Vindo!</span>
+            </center>
+        </div>
+    </section>
+    <!--Form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="ipt-nome">Nome:</label>
+                <input onkeyup="controleDeCampos.verificarCamposPreenchidos()" type="text" class="form-control" id="ipt-nome">
+            </div>
+            <div class="col-sm-3">
+                <label for="ipt-peso-atual">Peso Atual:</label>
+                <input onkeyup="controleDeCampos.verificarCamposPreenchidos()" type="text" class="form-control peso" id="ipt-peso-atual">
+            </div>
+            <div class="col-sm-3">
+                <label for="ipt-altura">Altura:</label>
+                <input onkeyup="controleDeCampos.verificarCamposPreenchidos()" type="text" class="form-control altura" id="ipt-altura">
+            </div>
+            <div class="col-sm-3">
+                <label for="ipt-peso-desejado">Peso Desejado:</label>
+                <input onkeyup="controleDeCampos.verificarCamposPreenchidos()" type="text" class="form-control peso" id="ipt-peso-desejado">
+            </div>
+            <div class="col-sm-3">
+                <label for="ipt-idade">Idade:</label>
+                <input onkeyup="controleDeCampos.verificarCamposPreenchidos()" type="text" class="form-control idade" id="ipt-idade">
+            </div>
+            <div class="col-sm-3">
+                <label for="ipt-sexo">Sexo:</label>
+                <select onchange="controleDeCampos.verificarCamposPreenchidos()" name="Sexo" id="ipt-sexo" class="form-control">
+                    <option value="f">Feminino</option>
+                    <option value="m">Masculino</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <label for="ipt-atividade-fisica">
+                    <i class="far fa-question-circle" data-toggle="modal" data-target="#modal-atividade-fisica"></i> Nivel de Atividade:
+                </label>
+                <select onchange="controleDeCampos.verificarCamposPreenchidos()" name="Nivel de Atividade Física" class="form-control" id="ipt-atividade-fisica">
+                    <option value="1">Sedentário</option>
+                    <option value="2">Levemente Ativo</option>
+                    <option value="3">Moderadamente Ativo</option>
+                    <option value="4">Muito Ativo</option>
+                    <option value="5">Extremamente Ativo</option>
+                </select>
+                <!--Modal-->
+                <div id="modal-atividade-fisica" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Informações</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Para os niveis de atividade considere:</p>
+                                <ul>
+                                    <li><b>Sedentário:</b> não pratica nenhuma atividade física.</li>
+                                    <li><b>Levemente Ativo:</b> pratica exercícios leves 1 a 3 vezes por semana, consumindo em torno de 750Kcal por semana.</li>
+                                    <li><b>Moderadamente Ativo:</b> pratica exercícios moderados 3 a 5 vezes por semana, consumindo em torno de 1850Kcal por semana.</li>
+                                    <li><b>Muito Ativo:</b> pratica exercícios pesados/esportes 6 a 7 vezes por semana, consumindo em torno de 3750Kcal por semana.</li>
+                                    <li><b>Extremamente Ativo:</b> pratica exercícios muito pesados, treinando 2 vezes ao dia, consumindo em torno de 5000kcal por semana, provavelmente não é o seu caso, vai por mim.</li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-primary" disabled id="btn-calcular">Calcular</button>
+            </div>
+        </div>
+    </div>
+    
+    <!--Cards-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="cards">
+                    <span class="card-header">Objetivo:</span><br/>
+                    <div class="card-conteudo" id="conteudo-card-objetivo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="cards">
+                    <span class="card-header">Tempo até o Objetivo:</span><br/>
+                    <div class="card-conteudo" id="conteudo-card-tempo-objetivo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="cards">
+                    <span class="card-header">Objetivo de Consumo:</span><br/>
+                    <div class="card-conteudo" id="conteudo-card-objetivo-consumo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="cards">
+                    <span class="card-header">Calorias:</span><br/>
+                    <div class="card-conteudo" id="conteudo-card-calorias">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="cards">
+                    <span class="card-header">Macros por Dia:</span><br/>
+                    <div class="card-conteudo" id="conteudo-card-macros">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="cards">
+                    <span class="card-header">IMC:</span><br/>
+                    <div class="card-conteudo" id="conteudo-card-IMC">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <div id="footer">
+        <p>Criado por: <a target="_blank" href="https://www.linkedin.com/in/diogo-de-souza-lima-38413a179/">
+        Diogo Lima</a></p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
